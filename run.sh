@@ -6,6 +6,11 @@ set -e
 	exit 1
 }
 
+[ "$ARIA2_RPC_PORT" ] || {
+	echo "Missing aria2 rcp port"
+	exit 1
+}
+
 [ "$ARIA2_UID" ] && usermod -u "$ARIA2_UID" aria2
 [ "$ARIA2_GID" ] && groupmod -g "$ARIA2_GID" aria2
 
@@ -18,6 +23,8 @@ mkdir -p /home/aria2/web
 encoded_secret=$(echo "$ARIA2_RPC_SECRET" | base64)
 sed "s/secret:\"\"/secret:\"$encoded_secret\"/g" \
 	/home/aria2/index.html > /home/aria2/web/index.html
+sed "s/rpcPort:\"6800\"/rpcPort:\"$ARIA2_RPC_PORT\"/g" \
+	-i /home/aria2/web/index.html
 
 # Mount permissions
 chown -R aria2:aria2 "$ARIA2_CONFIG_DIR"
