@@ -18,4 +18,5 @@ chown -R aria2:aria2 "$ARIA2_CONFIG_DIR"
 chown -R aria2:aria2 /downloads
 
 # Run aria2 as the aria2 user
-exec su -c "/usr/bin/aria2c --conf-path $ARIA2_CONFIG_DIR/aria2.conf --rpc-secret $ARIA2_RPC_SECRET" - aria2
+su -c "/usr/bin/aria2c --conf-path $ARIA2_CONFIG_DIR/aria2.conf --rpc-secret $ARIA2_RPC_SECRET -D" - aria2
+exec su -c "/usr/local/bin/caddy -conf /home/aria2/Caddyfile" - aria2
