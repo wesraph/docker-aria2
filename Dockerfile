@@ -7,8 +7,8 @@ ADD https://caddyserver.com/download/linux/amd64?license=personal&telemetry=off 
 ADD https://github.com/mayswind/AriaNg/releases/download/1.0.0/AriaNg-1.0.0-AllInOne.zip /tmp/ariang.zip
 
 RUN tar -xvf /tmp/caddy.tar.gz caddy -C /usr/local/bin && \
-    mkdir -p /home/aria2/web/ && unzip /tmp/ariang.zip -d /home/aria2/web/ && \
-    rm -rf /tmp/*
+    mkdir -p /home/aria2/web/ && unzip /tmp/ariang.zip -d /home/aria2/ && \
+    rm -rf /tmp/* /home/aria2/LICENSE
 
 COPY aria2.conf /home/aria2/aria2.conf
 COPY Caddyfile /home/aria2/Caddyfile
