@@ -3,4 +3,4 @@ gzip
 root /home/aria2/web/
 index index.html
 proxy /jsonrpc localhost:6900
-log / stdout "{proto} Request: {method} {path}"
+log / stdout "{remote} - {user} [{when}] \"{method} {uri} {proto}\" {status} {size}"

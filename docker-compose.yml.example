@@ -15,4 +15,4 @@ services:
     volumes:
     - /tmp/greg/downloads:/downloads
     ports:
-    - 6800:6800
+    - 6800:6800/tcp
