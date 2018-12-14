@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  aria2:
+    build: .
+    container_name: aria2
+    restart: unless-stopped
+    dns:
+    - 1.1.1.1
+    - 8.8.8.8
+    environment:
+    - ARIA2_UID=1000
+    - ARIA2_GID=1000
+    - ARIA2_RPC_SECRET=my_secret
+    volumes:
+    - /tmp/greg/downloads:/downloads
+    ports:
+    - 6800:6800
