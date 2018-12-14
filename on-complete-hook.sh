@@ -1,16 +1,21 @@
 #!/bin/sh
-
 set -e
 
-NUMBER_OF_FILES=$2
-FILES_PATH=$3
+# $1 is gid.
+# $2 is the number of files.
+# $3 is the path of the first file.
 
-if ! [ "$NUMBER_OF_FILES" = "1" ]; then
-	echo "More than one file ! : $NUMBER_OF_FILES"
-	exit 1
-fi
+DOING_DIR=/downloads/doing
+DONE_DIR=/downloads/done
 
-echo "Moving $FILES_PATH in /downloads/done/"
-mv "$FILES_PATH" /downloads/done/
+[ "$2" = "0" ] && exit 0
 
-exit 0
+file_path=$3
+while true; do
+	dir=$(dirname "$file_path")
+	[ "$dir" = "$DOING_DIR" ] && break
+	file_path=$dir
+done
+
+echo "Moving $file_path in $DONE_DIR"
+mv "$file_path" "$DONE_DIR/"
