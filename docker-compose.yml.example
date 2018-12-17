@@ -17,3 +17,5 @@ services:
     - /tmp/greg/downloads:/downloads
     ports:
     - 127.0.0.1:6800:6800/tcp
+    - 6881-6999:6881-6999/tcp
+    - 6881-6999:6881-6999/udp
