@@ -20,7 +20,7 @@ mkdir -p /downloads/doing /downloads/done
 mkdir -p /home/aria2/web
 
 # Update the secret in the index
-encoded_secret=$(echo "$ARIA2_RPC_SECRET" | base64)
+encoded_secret=$(echo -n "$ARIA2_RPC_SECRET" | base64)
 sed "s/secret:\"\"/secret:\"$encoded_secret\"/g" \
 	/home/aria2/index.html > /home/aria2/web/index.html
 sed "s/rpcPort:\"6800\"/rpcPort:\"$ARIA2_RPC_PORT\"/g" \
