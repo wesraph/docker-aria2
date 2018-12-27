@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-RUN apk add --no-cache shadow curl aria2 && \
+RUN apk add --no-cache shadow curl aria2 coreutils && \
     useradd -s /bin/sh -m aria2
 
 ADD https://caddyserver.com/download/linux/amd64?license=personal&telemetry=off /tmp/caddy.tar.gz
@@ -14,6 +14,7 @@ COPY aria2.conf /home/aria2/aria2.conf
 COPY Caddyfile /home/aria2/Caddyfile
 COPY on-complete-hook.sh /home/aria2/on-complete-hook.sh
 COPY run.sh /usr/bin/aria2.sh
+COPY watch_directory.sh /usr/bin/watch_directory.sh
 
 EXPOSE 6800
 CMD ["/usr/bin/aria2.sh"]

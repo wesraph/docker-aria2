@@ -30,6 +30,9 @@ sed "s/rpcPort:\"6800\"/rpcPort:\"$ARIA2_RPC_PORT\"/g" \
 chown -R aria2:aria2 "$ARIA2_CONFIG_DIR"
 chown -R aria2:aria2 /downloads
 
+# Run the torrent watcher daemon
+/usr/bin/watch_directory.sh  &
+
 # Run aria2 as the aria2 user
 su -c "aria2c --conf-path=$ARIA2_CONFIG_DIR/aria2.conf --rpc-secret=$ARIA2_RPC_SECRET -D" - aria2
 exec su -c "/usr/local/bin/caddy -conf /home/aria2/Caddyfile" - aria2

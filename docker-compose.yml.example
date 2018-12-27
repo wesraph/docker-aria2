@@ -15,6 +15,7 @@ services:
     - ARIA2_RPC_SECRET=my_secret
     volumes:
     - /tmp/greg/downloads:/downloads
+    - /tmp/greg/watch:/watch
     ports:
     - 127.0.0.1:6800:6800/tcp
     - 6881-6999:6881-6999/tcp
